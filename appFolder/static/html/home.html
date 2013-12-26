@@ -1,0 +1,20 @@
+
+<script>
+  $(".backgroundImages").backstretch("http://www.wallpapersdb.org/wallpapers/new-york-city/new_york_city_night_2048x1152.jpg");
+</script>
+
+<section class="backgroundImages">        
+	<div ng-controller="getAllDataCtrl">
+		<div class="container" id="home">
+			<div class="row well">
+				<div class="col-lg-12">
+			        <h1> You Are Home </h1>
+			        <h2> List of Active Tables: </h2>
+			        <ul ng-repeat="table in allTables.theData">
+			        	<li> <h3> <a href="/#/table/{{table}}"> {{table}} </a> </h3> </li>
+			    	</ul>
+			    </div>
+			</div>
+		</div>
+	</div>
+</section>

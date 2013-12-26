@@ -1,0 +1,81 @@
+AGI,metric,Num_Returns,Perc_Tot,Amount,Perc_Tot_Amt,Average_Amt,type,sort
+All returns,agi,"145,370,240",100,"8,374,142,977",100,"57,606",all returns,0
+No adjusted gross income,agi,"2,450,924",1.7,"-195,697,731",[1],"-79,847",all returns,1
+"$1 under $5,000",agi,"10,692,838",7.4,"27,519,609",0.3,"2,574",all returns,2
+"$5,000 under $10,000",agi,"12,386,716",8.5,"94,270,831",1.1,"7,611",all returns,3
+"$10,000 under $15,000",agi,"12,925,831",8.9,"161,447,556",1.9,"12,490",all returns,4
+"$15,000 under $20,000",agi,"11,880,059",8.2,"206,970,140",2.5,"17,422",all returns,5
+"$20,000 under $25,000",agi,"10,210,706",7,"229,181,453",2.7,"22,445",all returns,6
+"$25,000 under $30,000",agi,"8,987,613",6.2,"246,467,320",2.9,"27,423",all returns,7
+"$30,000 under $40,000",agi,"14,520,079",10,"505,069,023",6,"34,784",all returns,8
+"$40,000 under $50,000",agi,"10,983,973",7.6,"491,714,132",5.9,"44,767",all returns,9
+"$50,000 under $75,000",agi,"18,949,278",13,"1,165,811,609",13.9,"61,523",all returns,10
+"$75,000 under $100,000",agi,"11,926,401",8.2,"1,031,611,187",12.3,"86,498",all returns,11
+"$100,000 under $200,000",agi,"14,755,766",10.2,"1,977,406,206",23.6,"134,009",all returns,12
+"$200,000 under $500,000",agi,"3,801,641",2.6,"1,080,931,793",12.9,"284,333",all returns,13
+"$500,000 under $1,000,000",agi,"597,525",0.4,"403,585,438",4.8,"675,429",all returns,14
+"$1,000,000 under $1,500,000",agi,"134,907",0.1,"163,095,632",1.9,"1,208,949",all returns,15
+"$1,500,000 under $2,000,000",agi,"55,986",[2],"96,283,523",1.1,"1,719,779",all returns,16
+"$2,000,000 under $5,000,000",agi,"79,363",0.1,"236,075,612",2.8,"2,974,631",all returns,17
+"$5,000,000 under $10,000,000",agi,"19,189",[2],"130,763,563",1.6,"6,814,506",all returns,18
+"$10,000,000 or more",agi,"11,445",[2],"321,636,083",3.8,"28,102,760",all returns,19
+All returns,agi,"91,694,201",100,"7,693,198,033",100,,taxable returns,0
+No adjusted gross income,agi,"5,729",[2],"-7,564,265",[1],,taxable returns,1
+"$1 under $5,000",agi,"313,935",0.3,"896,794",[2],,taxable returns,2
+"$5,000 under $10,000",agi,"2,174,954",2.4,"17,014,975",0.2,,taxable returns,3
+"$10,000 under $15,000",agi,"5,037,783",5.5,"63,724,545",0.8,,taxable returns,4
+"$15,000 under $20,000",agi,"5,284,261",5.8,"92,375,045",1.2,,taxable returns,5
+"$20,000 under $25,000",agi,"5,330,665",5.8,"119,865,777",1.6,,taxable returns,6
+"$25,000 under $30,000",agi,"5,303,241",5.8,"145,680,579",1.9,,taxable returns,7
+"$30,000 under $40,000",agi,"10,387,300",11.3,"363,409,631",4.7,,taxable returns,8
+"$40,000 under $50,000",agi,"9,179,032",10,"412,007,993",5.4,,taxable returns,9
+"$50,000 under $75,000",agi,"17,672,862",19.3,"1,090,633,760",14.2,,taxable returns,10
+"$75,000 under $100,000",agi,"11,683,177",12.7,"1,011,099,797",13.1,,taxable returns,11
+"$100,000 under $200,000",agi,"14,640,768",16,"1,963,004,189",25.5,,taxable returns,12
+"$200,000 under $500,000",agi,"3,786,670",4.1,"1,076,602,653",14,,taxable returns,13
+"$500,000 under $1,000,000",agi,"594,554",0.6,"401,555,368",5.2,,taxable returns,14
+"$1,000,000 under $1,500,000",agi,"134,169",0.1,"162,199,076",2.1,,taxable returns,15
+"$1,500,000 under $2,000,000",agi,"55,679",0.1,"95,757,182",1.2,,taxable returns,16
+"$2,000,000 under $5,000,000",agi,"78,933",0.1,"234,825,935",3.1,,taxable returns,17
+"$5,000,000 under $10,000,000",agi,"19,098",[2],"130,128,401",1.7,,taxable returns,18
+"$10,000,000 or more",agi,"11,390",[2],"319,980,599",4.2,,taxable returns,19
+All returns,taxable income,"91,671,874",,"5,583,802,495",100,,taxable returns,0
+No adjusted gross income,taxable income,0,,0,[1],,taxable returns,1
+"$1 under $5,000",taxable income,"312,656",,"360,640",[2],,taxable returns,2
+"$5,000 under $10,000",taxable income,"2,173,182",,"4,084,138",0.1,,taxable returns,3
+"$10,000 under $15,000",taxable income,"5,037,368",,"18,307,734",0.3,,taxable returns,4
+"$15,000 under $20,000",taxable income,"5,282,940",,"39,645,342",0.7,,taxable returns,5
+"$20,000 under $25,000",taxable income,"5,330,645",,"58,011,098",1,,taxable returns,6
+"$25,000 under $30,000",taxable income,"5,303,194",,"79,344,528",1.4,,taxable returns,7
+"$30,000 under $40,000",taxable income,"10,386,963",,"218,847,537",3.9,,taxable returns,8
+"$40,000 under $50,000",taxable income,"9,178,807",,"261,542,529",4.7,,taxable returns,9
+"$50,000 under $75,000",taxable income,"17,671,328",,"724,964,013",13,,taxable returns,10
+"$75,000 under $100,000",taxable income,"11,682,005",,"706,746,967",12.7,,taxable returns,11
+"$100,000 under $200,000",taxable income,"14,636,836",,"1,459,193,633",26.1,,taxable returns,12
+"$200,000 under $500,000",taxable income,"3,783,714",,"861,897,209",15.4,,taxable returns,13
+"$500,000 under $1,000,000",taxable income,"593,530",,"338,221,230",6.1,,taxable returns,14
+"$1,000,000 under $1,500,000",taxable income,"133,917",,"139,065,234",2.5,,taxable returns,15
+"$1,500,000 under $2,000,000",taxable income,"55,568",,"82,427,782",1.5,,taxable returns,16
+"$2,000,000 under $5,000,000",taxable income,"78,799",,"203,471,405",3.6,,taxable returns,17
+"$5,000,000 under $10,000,000",taxable income,"19,060",,"113,250,692",2,,taxable returns,18
+"$10,000,000 or more",taxable income,"11,362",,"274,420,785",4.9,,taxable returns,19
+All returns,income tax,,,"1,045,510,793",,"11,402",taxable returns,0
+No adjusted gross income,income tax,,,"123,228",,"21,510",taxable returns,1
+"$1 under $5,000",income tax,,,"45,686",,146,taxable returns,2
+"$5,000 under $10,000",income tax,,,"425,620",,196,taxable returns,3
+"$10,000 under $15,000",income tax,,,"1,709,805",,339,taxable returns,4
+"$15,000 under $20,000",income tax,,,"3,878,287",,734,taxable returns,5
+"$20,000 under $25,000",income tax,,,"6,317,626",,"1,185",taxable returns,6
+"$25,000 under $30,000",income tax,,,"8,916,974",,"1,681",taxable returns,7
+"$30,000 under $40,000",income tax,,,"24,731,347",,"2,381",taxable returns,8
+"$40,000 under $50,000",income tax,,,"30,555,752",,"3,329",taxable returns,9
+"$50,000 under $75,000",income tax,,,"93,323,001",,"5,281",taxable returns,10
+"$75,000 under $100,000",income tax,,,"96,018,996",,"8,219",taxable returns,11
+"$100,000 under $200,000",income tax,,,"248,967,619",,"17,005",taxable returns,12
+"$200,000 under $500,000",income tax,,,"212,403,257",,"56,092",taxable returns,13
+"$500,000 under $1,000,000",income tax,,,"97,610,768",,"164,175",taxable returns,14
+"$1,000,000 under $1,500,000",income tax,,,"40,458,911",,"301,552",taxable returns,15
+"$1,500,000 under $2,000,000",income tax,,,"24,104,736",,"432,923",taxable returns,16
+"$2,000,000 under $5,000,000",income tax,,,"58,775,117",,"744,620",taxable returns,17
+"$5,000,000 under $10,000,000",income tax,,,"31,500,062",,"1,649,391",taxable returns,18
+"$10,000,000 or more",income tax,,,"65,644,002",,"5,763,301",taxable returns,19

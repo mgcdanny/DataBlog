@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="angApp">  
+    <head>
+        <meta charset="utf-8">
+        <title>The Title</title>
+        <!-- JQuery Stuff -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+       <!-- Bootstrap -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+        <!-- Angular Source Files -->
+        <link rel="stylesheet" type="text/css" href="../static/css/ng-grid.min.css"/>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+        <script src="../static/js/angular/angular-resource.min.js"></script>
+        <script src="../static/js/angular/angular-route.min.js"></script>
+        <script src="../static/js/angular/ng-grid.min.js"></script>
+        <!-- My Angular Module, CSS -->
+        <link rel="stylesheet" type="text/css" href="../static/css/style.css" />
+        <script type="text/javascript" src="../static/js/angNgGrid.js"></script>
+        <!-- Backstretch JS for the Home Page -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"> </script>
+    </head>
+
+    <body>
+        <nav class="navbar-wrapper navbar-default navbar-fixed-top" role="navigation">
+          <div class="container">
+            <div class="navbar-inner">
+                <div class="container">
+                  <a class="brand" href="#"> 
+                    <img src="/static/img/nyc.png"></a> 
+              </div>
+            </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">DashB</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>
+                <li><a href="#">Link</a></li>                       
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> About Us
+                    <b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Keep</a></li>
+                    <li><a href="#">On</a></li>
+                    <li><a href="#">Trucking</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+  
+    <div ng-view id="idNgView"></div>
+
+    </body>
+</html>
+
+
+
