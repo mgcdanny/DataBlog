@@ -7,6 +7,7 @@ from appFolder import app
 from flask import render_template, jsonify, make_response, _app_ctx_stack, Response, request, redirect
 from werkzeug import secure_filename
 import os
+import re
 
 def get_db():
     """Opens a new database connection if there is none yet for the
@@ -39,18 +40,18 @@ def strip_non_ascii(string):
     return ''.join(stripped)
 
 def update_db(csvfile, table='csvFiles'):
-	with app.app_context():
-		reader = csv.DictReader(open(csvfile, 'rb'))
-		container = []
-		table_id = csvfile.split('\\')[1]
-		row_id = 0 	
-		for row in reader:
-			row_id += 1
-			for key in row.keys():
-				container.append((table_id, row_id, json.dumps(key), json.dumps(strip_non_ascii(row[key]))))
-		db = get_db()
-		db.cursor().executemany('INSERT INTO csvFiles VALUES (?,?,?,?)', container)
-		db.commit()
+    with app.app_context():
+        reader = csv.DictReader(open(csvfile, 'rb'))
+        container = []
+        table_id = re.match(r'.*(\W+)(\w*)(\.csv)$', csvfile).groups()[1]
+        row_id = 0 	
+        for row in reader:
+        	row_id += 1
+        	for key in row.keys():
+        		container.append((table_id, row_id, json.dumps(key), json.dumps(strip_non_ascii(row[key]))))
+        db = get_db()
+        db.cursor().executemany('INSERT INTO csvFiles VALUES (?,?,?,?)', container)
+        db.commit()
 
 def init_data(csvfile="appFolder/data/*.csv"):
 	for f in glob.glob(csvfile):
@@ -102,10 +103,8 @@ def upload_file():
         print("Bad file to upload")
         return redirect("/")
 
-
 @app.route("/api/<thePageUri>", methods = ['GET'])
 def api(thePageUri):
-    #TODO pass thePageUri to the query as the limiting parameter
     print("i am the server side API")
     rez = query_db(jsonQuery, [thePageUri])
     return jsonify(theData=[json.loads(row[0]) for row in rez])
