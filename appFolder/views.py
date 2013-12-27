@@ -4,7 +4,9 @@ import csv
 import json
 from appFolder import app
 #from appFolder.models import MainData
-from flask import render_template, jsonify, make_response, _app_ctx_stack, Response
+from flask import render_template, jsonify, make_response, _app_ctx_stack, Response, request, redirect
+from werkzeug import secure_filename
+import os
 
 def get_db():
     """Opens a new database connection if there is none yet for the
@@ -74,23 +76,45 @@ jsonQuery = '''
         name, row
     HAVING name IN (?)'''
 
+
+def allowed_file(filename):
+    ALLOWED_EXTENSIONS = set(['csv'])
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
 @app.route('/<path:p>')
 @app.route('/')
 def ui(p=None):
 	return make_response(open('appFolder/templates/index.html').read())
 
+
+@app.route('/api/upload', methods=['POST'])
+def upload_file():
+    print("I am the upload API")
+    theFile = request.files['htmlFileName']
+    if theFile and allowed_file(theFile.filename):
+        filename = secure_filename(theFile.filename)
+        theFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        update_db(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        return redirect("/")
+    else: 
+        print("Bad file to upload")
+        return redirect("/")
+
+
 @app.route("/api/<thePageUri>", methods = ['GET'])
 def api(thePageUri):
-	#TODO pass thePageUri to the query as the limiting parameter
-	print("i am the server side API")
-	rez = query_db(jsonQuery, ["contracts.csv"])
-	return jsonify(theData=[json.loads(row[0]) for row in rez])
+    #TODO pass thePageUri to the query as the limiting parameter
+    print("i am the server side API")
+    rez = query_db(jsonQuery, [thePageUri])
+    return jsonify(theData=[json.loads(row[0]) for row in rez])
 
 @app.route("/api/allTables", methods = ['GET'])
 def apiAllTables():
-	#TODO create another table with just unique names so this can query it
-	print("i am the allTables server side API")
-	#rez = db.session.query(MainData.thePageUri.distinct()).all()
-	#return jsonify(theData=[row[0] for row in rez])
-	return jsonify(theData=['qwer'])
+    #TODO create another table with just unique names so this can query it
+    print("i am the allTables server side API")
+    rez = query_db("SELECT DISTINCT name FROM csvFiles")
+    print(rez)
+    return jsonify(theData=[row[0] for row in rez])
 

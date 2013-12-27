@@ -10,6 +10,9 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider,$loca
       }).when('/table/:name', {
         templateUrl: 'static/html/table.html',
         controller: 'angCtrl'
+      }).when('/upload', {
+        templateUrl: 'static/html/upload.html',
+        controller: ''
       }).otherwise({
         redirectTo: '/'
       });
@@ -40,8 +43,8 @@ app.controller('angCtrl', ['$scope', '$location', '$routeParams', 'RestService',
     $scope.gridOptions = {
     	data: 'myData', 
     	enableColumnResize: true, 
-    	showGroupPanel: true,  
-    	jqueryUIDraggable: true,
+    	showGroupPanel: false,  
+    	jqueryUIDraggable: false,
         multiSelect: false, 
         showFooter:true,
    	 	filterOptions: $scope.filterOptions,
