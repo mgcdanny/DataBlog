@@ -83,31 +83,37 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
-
 @app.route('/<path:p>')
 @app.route('/')
 def ui(p=None):
 	return make_response(open('appFolder/templates/index.html').read())
 
-
 @app.route('/api/upload', methods=['POST'])
 def upload_file():
     print("I am the upload API")
+    print(request)
     theFile = request.files['htmlFileName']
     if theFile and allowed_file(theFile.filename):
         filename = secure_filename(theFile.filename)
         theFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         update_db(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return redirect("/")
+        return redirect("/#/")
     else: 
         print("Bad file to upload")
-        return redirect("/")
+        return redirect("/#/")
 
-@app.route("/api/<thePageUri>", methods = ['GET'])
+@app.route("/api/<thePageUri>", methods = ['GET', 'DELETE'])
 def api(thePageUri):
     print("i am the server side API")
-    rez = query_db(jsonQuery, [thePageUri])
-    return jsonify(theData=[json.loads(row[0]) for row in rez])
+    if request.method == 'GET':
+        rez = query_db(jsonQuery, [thePageUri])
+        return jsonify(theData=[json.loads(row[0]) for row in rez])
+    if request.method == 'DELETE':
+        db = get_db()
+        db.execute('delete from csvFiles where name= ?', [thePageUri])
+        db.commit()
+        return "this is the DELETE api response"
+
 
 @app.route("/api/allTables", methods = ['GET'])
 def apiAllTables():

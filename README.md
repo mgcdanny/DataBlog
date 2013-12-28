@@ -9,9 +9,10 @@ pip install Flask
 
 After cloning cd into directory where startUp.py is and type:
 
+```
 $ python startUp.py
-
 $ python app.py
+```
 
 This should start the server.  Open a Chrome or FireFox (zero IE support) and go to 
 

@@ -22,7 +22,16 @@ body {margin-top: 140px;}
 }
 
 .backgroundImages .well .detail {
-	
 	background-color:rgba(300, 300, 300);
 }
 
+ul {list-style-type: none;}
+
+.form-group  input {
+    display:none
+}
+
+
+span.glyphicon-floppy-disk {
+    font-size: 10em;
+}
