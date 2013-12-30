@@ -18,7 +18,6 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider,$loca
       });
 	}]);
 
-
 app.factory('RESTService', ['$resource', function($resource) {
     return $resource('/api/:name', {name: 'RESTServiceTest'});
 }]);
@@ -40,16 +39,28 @@ app.controller('getAllDataCtrl', ['$scope', '$http', 'RESTService', function($sc
         });
     }
 
-    // var fd = new FormData()
-    // fd.append("uploadedFile", "C://mycode//DataBlog-master//appFolder//uploads//money.csv")
-    // /*test*/
-    // $http({
-    //         method: 'POST',
-    //         url: '/api/upload',
-    //         headers: {'Content-Type': 'multipart/form-data'},
-    //         data: fd
-    //     })
-}]);
+    $scope.setFile = function (element) {
+        $scope.uploadedFile = element.files[0];
+        
+    }
+
+    $scope.uploadFile = function () {
+        if (!$scope.uploadedFile) {
+            return;
+        }
+        var fd = new FormData();
+        fd.append("upFile", $scope.uploadedFile);
+        console.log(fd)
+        $http.post('/api/upload', fd, {
+                headers:{
+                    'Content-Type': undefined 
+                },
+                transformRequest: angular.identity
+            }).success(function(){
+                getAllTables()
+            });
+    };
+ }]);
 
 app.controller('angCtrl', ['$scope', '$location', '$routeParams', 'RESTService', function($scope, $location, $routeParams, RESTService) {
     RESTService.get($routeParams, function(response){

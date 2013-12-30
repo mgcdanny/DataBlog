@@ -91,16 +91,15 @@ def ui(p=None):
 @app.route('/api/upload', methods=['POST'])
 def upload_file():
     print("I am the upload API")
-    print(request)
-    theFile = request.files['htmlFileName']
+    theFile = request.files['upFile']
     if theFile and allowed_file(theFile.filename):
         filename = secure_filename(theFile.filename)
         theFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         update_db(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return redirect("/#/")
+        return "upload success response"
     else: 
         print("Bad file to upload")
-        return redirect("/#/")
+        return "asdf"
 
 @app.route("/api/<thePageUri>", methods = ['GET', 'DELETE'])
 def api(thePageUri):

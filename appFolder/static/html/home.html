@@ -16,20 +16,22 @@
 		    	</ul>
 			    <br/>
 				<h1> Upload Your Data (CSV Only) </h1>
-				<form role="form" action="api/upload" method="post" enctype="multipart/form-data">
+				<form role="form" action="" method="post" enctype="multipart/form-data">
 					<div class="form-group">
-						<label for="file-input">
+						<label for="floppy">
 								<span class="glyphicon glyphicon-floppy-disk"></span>
 						</label>
-					    <input id="file-input" type="file" name="htmlFileName"  ng-model="ngFile"><i> {{ngFile}} </i>
-					    <p class="help-block">Click or Drag and Drop on the Floppy</p>
+					  <input type="file" id="floppy" onchange="angular.element(this).scope().setFile(this)" ng-model="upFileName"/>
+					  	<p class="help-block">{{upFileName}}</p>
+					    <p class="help-block">Hi Click or Drag and Drop on the Floppy</p>
 					    <p class="help-block">No punctuation in the file name or header row allowed</p>
 					    <p class="help-block">Do not use the headers: name, row</p>
-					    <button type="submit" class="btn btn-default">Submit</button>
+					    <button  ng-click='uploadFile()' type="submit"  class="btn btn-default">Submit</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
+
 
