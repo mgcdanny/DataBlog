@@ -11,14 +11,18 @@
 			    </div>
 			    <br/><div class="gridStyle" ng-grid="gridOptions"></div><br/>
 			    <div class="input-group input-group-lg" ng-repeat= "data in mySelections">
-			    	<input 
-			    		ng-repeat="(key, var) in data" 
-			    		type="text" 
-			    		class="form-control" 
-			    		placeholder="{{key}}: {{var}}">
-			    	</input>
+				    <div ng-repeat="(key, var) in data">
+				    	<input 	
+							ng-if="hidePrimaryKey(key)"
+				    		type="text" 
+				    		class="form-control" 
+				    		ng-model="data[key]"
+				    		>
+				    	</input>
+				    </div>
+			    	<input type="submit" value="Submit" ng-click="updateRow(mySelections)">
 				</div>
 			</div>
-			</div>  
+			</div>
 		</div>
 </div>

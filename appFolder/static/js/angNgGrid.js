@@ -19,7 +19,7 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider,$loca
 	}]);
 
 app.factory('RESTService', ['$resource', function($resource) {
-    return $resource('/api/:name', {name: 'RESTServiceTest'});
+    return $resource('/api/:name', {name: 'RESTServiceTest'}, {updateRow: {method:'PUT'}});
 }]);
 
 app.controller('getAllDataCtrl', ['$scope', '$http', 'RESTService', function($scope,$http, RESTService){
@@ -76,9 +76,22 @@ app.controller('angCtrl', ['$scope', '$location', '$routeParams', 'RESTService',
         });
     });
 
+  
+    $scope.updateRow = function(data){
+        RESTService.updateRow($routeParams, data)
+    }
+
+    $scope.hidePrimaryKey = function(data){
+        if(data == 'row' || data == 'name'){
+            return false
+        }else{
+            return true
+        }
+    }
+
 
     $scope.filterOptions = {filterText: ''};
-	$scope.mySelections = [];
+    $scope.mySelections = [];
     $scope.gridOptions = {
     	data: 'myData', 
     	enableColumnResize: true,
@@ -88,7 +101,7 @@ app.controller('angCtrl', ['$scope', '$location', '$routeParams', 'RESTService',
         multiSelect: false, 
         showFooter:true,
    	 	filterOptions: $scope.filterOptions,
-    	selectedItems: angular.fromJson($scope.mySelections),
+    	selectedItems: $scope.mySelections,
         showColumnMenu: true,
         columnDefs: 'myColumnDefs'
     }

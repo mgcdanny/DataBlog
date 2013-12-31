@@ -101,7 +101,7 @@ def upload_file():
         print("Bad file to upload")
         return "asdf"
 
-@app.route("/api/<thePageUri>", methods = ['GET', 'DELETE'])
+@app.route("/api/<thePageUri>", methods = ['GET', 'DELETE', 'PUT'])
 def api(thePageUri):
     print("i am the server side API")
     if request.method == 'GET':
@@ -112,7 +112,17 @@ def api(thePageUri):
         db.execute('delete from csvFiles where name= ?', [thePageUri])
         db.commit()
         return "this is the DELETE api response"
-
+    if request.method == 'PUT':
+        print("this is the PUT API call")
+        db = get_db()
+        req = request.json[0]
+        row = req['row']
+        for col in req:
+            if col not in ['row','name']:
+                updateQuery = "UPDATE csvFiles SET value=? WHERE col=? AND row=? AND name=?"
+                db.execute(updateQuery, [json.dumps(req[col]), json.dumps(col), row, thePageUri])
+        db.commit()
+        return "this is the PUT response"
 
 @app.route("/api/allTables", methods = ['GET'])
 def apiAllTables():
@@ -121,4 +131,5 @@ def apiAllTables():
     rez = query_db("SELECT DISTINCT name FROM csvFiles")
     print(rez)
     return jsonify(theData=[row[0] for row in rez])
+
 
