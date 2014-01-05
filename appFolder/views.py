@@ -42,15 +42,19 @@ def strip_non_ascii(string):
 def update_db(csvfile, table='csvFiles'):
     with app.app_context():
         reader = csv.DictReader(open(csvfile, 'rb'))
+        reader.fieldnames = map(lambda x: re.sub("\W","",x), reader.fieldnames)
         container = []
         table_id = re.match(r'.*(\W+)(\w*)(\.csv)$', csvfile).groups()[1]
-        row_id = 0 	
+        row_id = 0
         for row in reader:
         	row_id += 1
         	for key in row.keys():
         		container.append((table_id, row_id, json.dumps(key), json.dumps(strip_non_ascii(row[key]))))
         db = get_db()
-        db.cursor().executemany('INSERT INTO csvFiles VALUES (?,?,?,?)', container)
+        cur = db.cursor()
+        cur.execute('PRAGMA foreign_keys = ON')
+        cur.executemany('INSERT INTO csvFiles VALUES (?,?,?,?)', container)
+        #db.cursor().executemany('INSERT INTO csvFiles VALUES (?,?,?,?)', container)
         db.commit()
 
 def init_data(csvfile="appFolder/data/*.csv"):
@@ -90,16 +94,31 @@ def ui(p=None):
 
 @app.route('/api/upload', methods=['POST'])
 def upload_file():
-    print("I am the upload API")
+    print("I am the file upload API")
+    print(request.files)
+    print(request.data)
+    print(request.json)
     theFile = request.files['upFile']
     if theFile and allowed_file(theFile.filename):
         filename = secure_filename(theFile.filename)
         theFile.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         update_db(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return "upload success response"
+        return "file upload response: success"
     else: 
         print("Bad file to upload")
-        return "asdf"
+        return "file upload response: fail"
+
+
+@app.route('/api/upload_meta', methods=['POST'])
+def upload_meta():
+    print(request.json)
+    container = [request.json['name'].split('.')[0],request.json['title'],request.json['desc']]
+    db = get_db()
+    cur = db.cursor()
+    cur.execute('PRAGMA foreign_keys = ON')
+    cur.execute('INSERT INTO csvMeta VALUES (?,?,?)', container)
+    db.commit()
+    return 'upload_meta response: success'
 
 @app.route("/api/<thePageUri>", methods = ['GET', 'DELETE', 'PUT'])
 def api(thePageUri):
@@ -109,7 +128,9 @@ def api(thePageUri):
         return jsonify(theData=[json.loads(row[0]) for row in rez])
     if request.method == 'DELETE':
         db = get_db()
-        db.execute('delete from csvFiles where name= ?', [thePageUri])
+        cur = db.cursor()
+        cur.execute('PRAGMA foreign_keys = ON')
+        cur.execute('delete from csvMeta where name= ?', [thePageUri])
         db.commit()
         return "this is the DELETE api response"
     if request.method == 'PUT':

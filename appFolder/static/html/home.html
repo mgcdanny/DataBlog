@@ -16,17 +16,25 @@
 		    	</ul>
 			    <br/>
 				<h1> Upload Your Data (CSV Only) </h1>
-				<form role="form" action="" method="post" enctype="multipart/form-data">
+				<form role="form" method="post" enctype="multipart/form-data" name="formData">
 					<div class="form-group">
-						<label for="floppy">
-								<span class="glyphicon glyphicon-floppy-disk"></span>
-						</label>
-					  <input type="file" id="floppy" onchange="angular.element(this).scope().setFile(this)" ng-model="upFileName"/>
-					  	<p class="help-block">{{upFileName}}</p>
-					    <p class="help-block">Hi Click or Drag and Drop on the Floppy</p>
-					    <p class="help-block">No punctuation in the file name or header row allowed</p>
+						<input type="text" onchange="angular.element(this).scope().setFileTitle(this)"/>
+					</div>
+					<div class="form-group">
+						<input type="text" onchange="angular.element(this).scope().setFileDesc(this)"/>
+					</div>
+					<div class="form-group">
+					<!--<label for="floppy">
+							<span class="glyphicon glyphicon-floppy-disk"></span>
+						</label> -->
+					  	<input type="file" id="floppy" onchange="angular.element(this).scope().setFile(this)" ng-model="upFileDisplayName"/>
+					</div>  
+					  	<p class="help-block">{{upFileDisplayName}}</p>
+					    <p class="help-block">Click on the Floppy To Select File</p>
+					    <p class="help-block">No punctuation in the file name or header row allowed (no spaces either)</p>
 					    <p class="help-block">Do not use the headers: name, row</p>
-					    <button  ng-click='uploadFile()' type="submit"  class="btn btn-default">Submit</button>
+					    <p class="help-block">The same file can not be uploaded twice</p>
+					    <button  ng-click='uploadAll()' type="submit"  class="btn btn-default">Submit</button>
 					</div>
 				</form>
 			</div>

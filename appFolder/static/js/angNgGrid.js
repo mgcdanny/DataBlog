@@ -33,33 +33,50 @@ app.controller('getAllDataCtrl', ['$scope', '$http', 'RESTService', function($sc
     /*calling this function here seems hackish but did not see better way*/
     getAllTables();
 
+
     $scope.deleteCsvFile = function(thePageUri){
         RESTService.delete({name: thePageUri}, function(response){
             getAllTables();
         });
     }
 
-    $scope.setFile = function (element) {
-        $scope.uploadedFile = element.files[0];
-        
+/*Two post calls: first for the meta data, second for the actual file*/
+/*I can't figure out how to send the file and the data abou the file at the same time*/         
+
+    $scope.upFileTitle = ""
+    $scope.upFileDesc = ""
+
+    $scope.setFile = function (element) {        
+        $scope.upFile = element.files[0];
     }
 
     $scope.uploadFile = function () {
-        if (!$scope.uploadedFile) {
+        if (!$scope.upFile) {
             return;
-        }
-        var fd = new FormData();
-        fd.append("upFile", $scope.uploadedFile);
-        console.log(fd)
-        $http.post('/api/upload', fd, {
+        }      
+       var fd = new FormData();  
+       fd.append("upFile", $scope.upFile);
+       $http.post('/api/upload', fd, {
                 headers:{
-                    'Content-Type': undefined 
+                    'Content-Type': undefined
                 },
                 transformRequest: angular.identity
             }).success(function(){
                 getAllTables()
             });
     };
+
+    $scope.uploadAll = function(){
+        var data = {
+                title:$scope.upFileTitle, 
+                desc:$scope.upFileDesc, 
+                name:$scope.upFile['name']
+            }
+       $http.post('/api/upload_meta', data).success(function(resp){
+                $scope.uploadFile()
+            });
+    }
+ 
  }]);
 
 app.controller('angCtrl', ['$scope', '$location', '$routeParams', 'RESTService', function($scope, $location, $routeParams, RESTService) {
