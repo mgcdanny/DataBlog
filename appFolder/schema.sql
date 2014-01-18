@@ -28,3 +28,5 @@ CREATE TABLE commentTable (
 	theComment text 
 );
 CREATE INDEX commentTable_index_name_col ON commentTable(thePage, theUser);	
+
+

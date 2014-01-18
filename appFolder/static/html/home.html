@@ -2,9 +2,9 @@
 <div ng-controller="getAllDataCtrl">
 	<div class="container-liquid">
 		<div class="row well">
-			<div class="col-lg-12">
+			<div class="col-lg-6">
 		        <h1> You Are Home </h1>
-		        <h2> List of Active Tables: </h2>
+		        <h2 ng-if="allTables.theData"> List of Active Tables: </h2>
 		        <ul ng-repeat="table in allTables.theData">
 		        	<li> 
 	        			<h3> 
@@ -14,28 +14,31 @@
 	        			</h3> 
 		        	</li>
 		    	</ul>
-			    <br/>
+		    </div>
+			<div class="col-lg-6">
 				<h1> Upload Your Data (CSV Only) </h1>
-				<form role="form" method="post" enctype="multipart/form-data" name="formData">
+				<form role="form" method="post" name="formData">
+					<p class="help-block">Click on the Floppy To Select File</p>
+					<p class="help-block">
+						No punctuation in the file name or header row allowed (no spaces either)
+					</p>
+					<p class="help-block">Do not use the headers: name, row</p>
+					<p class="help-block">The same file can not be uploaded twice</p>
+					<p class="help-block">{{upFileDisplayName}}</p>
 					<div class="form-group">
-						<input type="text" onchange="angular.element(this).scope().setFileTitle(this)"/>
+						<label for="floppy">
+								<span class="glyphicon glyphicon-floppy-disk"></span>
+						</label>
+						<input type="file" id="floppy" name="upFile" onchange="angular.element(this).scope().setFile(this)" ng-model="upFileDisplayName"/>
 					</div>
 					<div class="form-group">
-						<input type="text" onchange="angular.element(this).scope().setFileDesc(this)"/>
+						<input type="text" id="formTitleId" name="upFileTitle" ng-model="upFileTitle" placeholder="Type The Title"/>
 					</div>
 					<div class="form-group">
-					<!--<label for="floppy">
-							<span class="glyphicon glyphicon-floppy-disk"></span>
-						</label> -->
-					  	<input type="file" id="floppy" onchange="angular.element(this).scope().setFile(this)" ng-model="upFileDisplayName"/>
-					</div>  
-					  	<p class="help-block">{{upFileDisplayName}}</p>
-					    <p class="help-block">Click on the Floppy To Select File</p>
-					    <p class="help-block">No punctuation in the file name or header row allowed (no spaces either)</p>
-					    <p class="help-block">Do not use the headers: name, row</p>
-					    <p class="help-block">The same file can not be uploaded twice</p>
-					    <button  ng-click='uploadAll()' type="submit"  class="btn btn-default">Submit</button>
+						<!-- <input type="text" id="formDescId" name="upFileDesc" ng-model="upFileDesc" placeholder="Type Description"/> -->
+						<textarea id="formDescId" name="upFileDesc" ng-model="upFileDesc" placeholder="Type Description"> </textarea>
 					</div>
+					    <button id="formButton"  ng-click='uploadAll()' type="submit"  class="btn btn-default">Submit</button>
 				</form>
 			</div>
 		</div>

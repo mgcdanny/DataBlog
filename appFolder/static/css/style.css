@@ -27,11 +27,57 @@ body {margin-top: 140px;}
 
 ul {list-style-type: none;}
 
-.form-group  input {
-    /*display:none*/
+#floppy {
+    display:none
 }
 
+#formTitleId {
+    min-width: 200px;
+}
+
+#formDescId {
+    resize: none;
+    min-width: 200px;
+    height: 200px;
+}
+
+#formButton{
+    min-width: 200px;
+}
 
 span.glyphicon-floppy-disk {
-    font-size: 10em;
+    font-size: 15em;
 }
+
+
+#tableTitleId{
+    font-size: 20pt;
+    resize: none;
+    border: none;
+    background-color:transparent;
+    width: 100%;
+    height: 2em;
+}
+
+#tableDescId{
+    resize: none;
+    border: none;
+    background-color:transparent;
+    width: 100%;
+    height: 10em;
+}
+
+
+/*test*/
+
+.green:hover:after {
+    background-color: blue;
+    content: "asfdasfdasfd";
+    position: absolute;
+    padding: 5px;
+    border: 1px solid gray;
+    background: white;
+    font-size: 14px;
+}
+
+
